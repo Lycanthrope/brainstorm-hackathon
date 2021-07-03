@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Hosting;
 
 namespace ContentAssignmentService
@@ -16,10 +15,6 @@ namespace ContentAssignmentService
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
-					webBuilder.ConfigureKestrel(o =>
-					{
-						o.ConfigureHttpsDefaults(o => o.ClientCertificateMode = ClientCertificateMode.NoCertificate);
-					});
 				});
 	}
 }
