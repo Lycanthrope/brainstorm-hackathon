@@ -29,4 +29,9 @@ $ dotnet test ContentAssignmentService.sln
 
 ## Notes
 
-<Put here your notes if you have some>
+Features that are not implemented yet:
+- import Data.json to neo4j database using apoc tool on docker-compose
+- make videos endpoint working correctly
+- make videoPaths endpoint working correctly
+- add tests for endpoints
+- add logging to rabbitMQ every endpoint hit
