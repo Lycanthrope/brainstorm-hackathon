@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  contentassignmentservice:
+    image: ${DOCKER_REGISTRY-}contentassignmentservice
+    build:
+      context: .
+      dockerfile: Dockerfile
