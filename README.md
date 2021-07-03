@@ -2,7 +2,7 @@
 
 ## Summary
 
-<Put here description of your tech decisions>
+The idea is to use graph database (neo4j) to give all the calculations complexity to proper engine.
 
 ## Run
 
@@ -23,7 +23,8 @@ _Example_
 
 ```bash
 # Go into the folder with solution and run:
-$ dotnet test NameOfYourSolution.sln
+# not implemented yet :(
+$ dotnet test ContentAssignmentService.sln
 ```
 
 ## Notes
