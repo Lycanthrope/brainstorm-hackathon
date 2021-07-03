@@ -30,13 +30,13 @@ namespace ContentAssignmentService.Controllers
 		{
 			try
 			{
-				var query = @$"MATCH (m:{nameof(Video)}) RETURN m";
+				var query = @$"match (m:{nameof(Video)}) return m";
 
 				var session = _driver.AsyncSession();
 
 				var videos = await session.RunReadTransactionForObjects<Video>(query, null, "m");
 
-				return $"database is accessible and contains {videos.Count()} videos.";
+				return $"Database is accessible and contains {videos.Count()} videos.";
 			}
 			catch (Exception ex)
 			{

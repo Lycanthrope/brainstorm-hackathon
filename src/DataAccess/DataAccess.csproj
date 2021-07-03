@@ -8,8 +8,4 @@
     <PackageReference Include="Neo4j.Driver.Extensions" Version="1.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Context\" />
-  </ItemGroup>
-
 </Project>

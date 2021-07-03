@@ -1,3 +1,4 @@
+using ContentAssignmentService.Managers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,7 @@ namespace ContentAssignmentService
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddSingleton(GetDriver);
-
+			services.AddScoped<IVideoManager, VideoManager>();
 			services.AddControllers();
 		}
 
