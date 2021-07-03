@@ -3,6 +3,47 @@ version: '3.4'
 services:
   contentassignmentservice:
     image: ${DOCKER_REGISTRY-}contentassignmentservice
+    depends_on:
+      - neo4j
     build:
       context: .
       dockerfile: Dockerfile
+    networks:
+      - app-network 
+  neo4j:
+    image: neo4j:4.3.1
+    restart: unless-stopped
+    hostname: neo4j
+    ports:
+      - 7687:7687 # bolt protocol
+      - 7474:7474 # http protocol
+      - 7473:7473 # https protocol
+    networks:
+      - app-network
+    volumes:
+      - ../../db/conf:/conf
+      - ../../db/data:/data
+      - ../../db/import:/import
+      - ../../db/logs:/logs
+      - ../../db/plugins:/plugins
+    environment: 
+      # Raise memory limits
+      - NEO4J_dbms_memory_pagecache_size=1G
+      - NEO4J_dbms.memory.heap.initial_size=1G
+      - NEO4J_dbms_memory_heap_max__size=1G
+      # encryption settings
+      - NEO4J_dbms.connector.bolt.tls_level=OPTIONAL
+      - NEO4J_dbms_ssl_policy_bolt_client__auth=NONE
+      - NEO4J_dbms_ssl_policy_https_client__auth=NONE
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      # for development purposes only
+      # - NEO4J_AUTH=none
+      - NEO4J_AUTH=neo4j/neo
+      # Install plugins as an array of items
+      - NEO4JLABS_PLUGINS=["apoc"]
+      # Enable APOC to import files
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+networks:
+  app-network:
+    driver: bridge
